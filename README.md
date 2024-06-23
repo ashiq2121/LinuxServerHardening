@@ -21,8 +21,10 @@ Here are the steps we take to harden the server with SSH authentication:
 1. Generate the SSH certificate on the **client** side: `ssh-keygen -t rsa -b 4096`. -t specifies the type, rsa is the type of algorithm we choose (rsa is usually used for public key generation), -b is the number of bits and 4096 is the bit size. You will be prompted for a passphrase. Make sure you choose a strong one. The key is saved in the file `/root/.ssh`.
 <img src="https://i.imgur.com/RLLBVXi.png" height="80%" width="80%">
 
-2. We will now copy over the public key we generated over to the server.
-3. We start by doing a backup of the configuration file using this command: `cp /etc/ssh/sshd_config /etc/ssh/sshd_config_backup​`
+2. We will now copy the public key we generated over to the server using: `ssh-copy-id [server username]@[server ip address]`. Remember we're still on the **client** side. Once you are done, you will be able to log into the server via `ssh [server-side username]@[server ip address]`.
+<img src="https://i.imgur.com/GCrDZwa.png" height="80%" width="80%">
+3. To harden the server, we can remove password authentication to ensure that only users with the SSH certificate can access the server. To do this, we edit a particular file **on the server** to include some extra settings. We will use `nano /etc/ssh/sshd_config`, and add the line `
+(We can do a backup of the configuration file using this command: `cp /etc/ssh/sshd_config /etc/ssh/sshd_config_backup​` in case anything goes wrong)
 
 Change port and login settings: sudo vi /etc/ssh/sshd_config​
 
