@@ -15,6 +15,18 @@ Hi there! This is an exciting project, where I explore some of the ways to secur
 
 <h2>SSH Keys for Authentication:</h2>
 
+In this step, we look into installing SSH keys for authentication on the linux server. SSH uses asymmetric encryption, generating a pair of cryptographic keys - a public key and a private key. ​The private key is kept securely on the client machine, while the public key is stored on the server. ​This eliminates the need to transmit passwords over the network, reducing the risk of password interception or brute-force attacks.​
+
+Here are the step we take to harden the server with SSH authentication:
+1. We start by doing a backup of the configuration file using this command: `cp /etc/ssh/sshd_config /etc/ssh/sshd_config_backup​`
+
+Change port and login settings: sudo vi /etc/ssh/sshd_config​
+
+Changing the default port number​
+
+Disabling password-based login​
+
+Disable SSH login using root username
 
 Launch the utility: <br/>
 <img src="https://i.imgur.com/62TgaWL.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
