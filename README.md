@@ -23,16 +23,16 @@ Here are the steps we take to harden the server with SSH authentication:
 
 2. We will now copy the public key we generated over to the server using: `ssh-copy-id [server username]@[server ip address]`. Remember we're still on the **client** side. Once you are done, you will be able to log into the server via `ssh [server-side username]@[server ip address]`.
 <img src="https://i.imgur.com/GCrDZwa.png" height="80%" width="80%">
-3. To harden the server, we can remove password authentication to ensure that only users with the SSH certificate can access the server. To do this, we edit a particular file **on the server** to include some extra settings. We will use `nano /etc/ssh/sshd_config`, and add the line `
-(We can do a backup of the configuration file using this command: `cp /etc/ssh/sshd_config /etc/ssh/sshd_config_backup​` in case anything goes wrong)
+3. To harden the server, we can remove password authentication to ensure that only users with the SSH certificate can access the server, essentially disabling password-based login to the server. We can also disable SSH login using the root username and change the default port number. To do this, we edit a particular file **on the server** to include some extra settings.
+- `cp /etc/ssh/sshd_config /etc/ssh/sshd_config_backup​` to backup the config file first
+- `setenforce 0` to disable selinux, so that we can make changes to the config file without problem
+- `nano /etc/ssh/sshd_config` to go into the config file and make our changes
+-  Add the lines `Port 2222`, `PasswordAuthentication no` and `PermitRootLogin no`.
 
-Change port and login settings: sudo vi /etc/ssh/sshd_config​
+<img src="https://i.imgur.com/ZvQQrwQ.png" height="80%" width="80%">
+<img src="https://i.imgur.com/oKSLgu1.png" height="80%" width="80%">
 
-Changing the default port number​
-
-Disabling password-based login​
-
-Disable SSH login using root username
+Now we can see that when we try to connect from the client machine via the default port, or connect using the user password, or connect directly as a root user, we are unable to.
 
 Launch the utility: <br/>
 <img src="https://i.imgur.com/62TgaWL.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
