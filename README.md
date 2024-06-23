@@ -13,7 +13,7 @@ Hi there! This is an exciting project, where I explore some of the ways to secur
 
 - <b>Rocky 9.2</b>
 
-<h2>SSH Keys for Authentication:</h2>
+<h2>SSH Keys for Authentication</h2>
 
 In this step, we look into installing SSH keys for authentication on the linux server. SSH uses asymmetric encryption, generating a pair of cryptographic keys - a public key and a private key. ​The private key is kept securely on the client machine, while the public key is stored on the server. ​This eliminates the need to transmit passwords over the network, reducing the risk of password interception or brute-force attacks.​ Security is improved by avoiding the need to have passwords stored in files, and eliminates the possibility of a compromised server stealing a user's password.
 
@@ -34,8 +34,9 @@ Here are the steps we take to harden the server with SSH authentication:
 <img src="https://i.imgur.com/5QvOcJB.png" height="80%" width="80%">
 <img src="https://i.imgur.com/oKSLgu1.png" height="80%" width="80%">
 
-Now we can see that when we try to connect from the client machine via the default port, or connect using the user password, or connect directly as a root user, we are unable to.
+Now if we try to connect from the client machine via the default port, or connect using the user password, or connect directly as a root user, we would be unable to.
 
+<h2>Firewall</h2>
 Launch the utility: <br/>
 <img src="https://i.imgur.com/62TgaWL.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
