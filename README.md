@@ -1,7 +1,7 @@
 # Linux Server Hardening
 
 <h2>Description</h2>
-Hi there! This is an exciting project, where I explore some of the ways to secure and harden a Linux server. The distribution chosen would be Rock, as it is based on the Red Hat Enterprise Linux (RHEL) source code. RHEL is one of the most popular distributions in the enterprise world, and so working with Rocky would be a good alternative.
+Hi there! This is an exciting project, where I explore some of the ways to secure and harden a Linux server. The distribution chosen would be Rocky, as it is based on the Red Hat Enterprise Linux (RHEL) source code. RHEL is one of the most popular distributions in the enterprise world, and so working with Rocky would be a good alternative.
 <br />
 
 <h2>Hardening Measures Taken</h2>
@@ -11,14 +11,18 @@ Hi there! This is an exciting project, where I explore some of the ways to secur
 
 <h2>Environments Used </h2>
 
-- <b>Rocky 9.2</b> (21H2)
+- <b>Rocky 9.2</b>
 
 <h2>SSH Keys for Authentication:</h2>
 
-In this step, we look into installing SSH keys for authentication on the linux server. SSH uses asymmetric encryption, generating a pair of cryptographic keys - a public key and a private key. ​The private key is kept securely on the client machine, while the public key is stored on the server. ​This eliminates the need to transmit passwords over the network, reducing the risk of password interception or brute-force attacks.​
+In this step, we look into installing SSH keys for authentication on the linux server. SSH uses asymmetric encryption, generating a pair of cryptographic keys - a public key and a private key. ​The private key is kept securely on the client machine, while the public key is stored on the server. ​This eliminates the need to transmit passwords over the network, reducing the risk of password interception or brute-force attacks.​ Security is improved by avoiding the need to have passwords stored in files, and eliminates the possibility of a compromised server stealing a user's password.
 
-Here are the step we take to harden the server with SSH authentication:
-1. We start by doing a backup of the configuration file using this command: `cp /etc/ssh/sshd_config /etc/ssh/sshd_config_backup​`
+Here are the steps we take to harden the server with SSH authentication:
+1. Generate the SSH certificate on the **client** side: `ssh-keygen -t rsa -b 4096`. -t specifies the type, rsa is the type of algorithm we choose (rsa is usually used for public key generation), -b is the number of bits and 4096 is the bit size. You will be prompted for a passphrase. Make sure you choose a strong one. The key is saved in the file `/root/.ssh`.
+<img src="https://i.imgur.com/RLLBVXi.png" height="80%" width="80%">
+
+2. We will now copy over the public key we generated over to the server.
+3. We start by doing a backup of the configuration file using this command: `cp /etc/ssh/sshd_config /etc/ssh/sshd_config_backup​`
 
 Change port and login settings: sudo vi /etc/ssh/sshd_config​
 
