@@ -37,16 +37,30 @@ Here are the steps we take to harden the server with SSH authentication:
 Now if we try to connect from the client machine via the default port, or connect using the user password, or connect directly as a root user, we would be unable to.
 
 <h2>Firewall</h2>
-Launch the utility: <br/>
-<img src="https://i.imgur.com/62TgaWL.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+Next we have the installation of a firewall. A firewall basically acts as a barrier between your server and potential threats from the outside, so if you can install one on your server you should do so! We can install UFW - Uncomplicated Firewall, on our Rocky server. UFW is available on Enterprise Linux systems such as Rocky in the EPEL repository. We can install the repository, and then the UFW firewall using the following commands:
+
+1. `sudo dnf install epel-release`
+2. `sudo dnf install ufw`
+
+Downloading UFW <br/>
+<img src="https://i.imgur.com/hlehIZk.png" height="80%" width="80%">
 <br />
 <br />
-Select the disk:  <br/>
-<img src="https://i.imgur.com/tcTyMUE.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+Next, we enable the firewall, and we can check its status. Use the following commands:
+
+1. `ufw enable`
+2. `ufw status`
+Firewall status:  <br/>
+<img src="https://i.imgur.com/IJBsyi1.png" height="80%" width="80%">
 <br />
 <br />
-Enter the number of passes: <br/>
-<img src="https://i.imgur.com/nCIbXbg.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+
+Now you can start setting some firewall rules. Maybe you want to ensure no FTP connections can be made to your server, but you would allow HTTP connections. You can allow/disallow traffic from the ports through the following commands:
+
+1. `ufw deny 21` (not allowing FTP traffic, since FTP uses port 21)
+2. `ufw allow 80` (allowing HTTP traffic, since HTTP uses port 80)
+Firewall status after setting rules: <br/>
+<img src="https://i.imgur.com/5lX3RhU.png" height="80%" width="80%">
 <br />
 <br />
 Confirm your selection:  <br/>
