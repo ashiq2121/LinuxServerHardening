@@ -8,6 +8,7 @@ Hi there! This is an exciting project, where I explore some of the ways to secur
 
 - <b>SSH Keys for Authentication</b> 
 - <b>Firewall</b>
+- <b>Fail2Ban</b>
 
 <h2>Environments Used </h2>
 
@@ -65,11 +66,18 @@ Firewall status after setting rules: <br/>
 The installation and usage of firewalld can be explored as an alternative firewall options as it is more robust. UFW is useful as an introduction to firewall installation. 
 <br />
 <br />
-Confirm your selection:  <br/>
-<img src="https://i.imgur.com/cdFHBiU.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<h2>Fail2Ban</h2>
+Fail2Ban is an intrusion  prevention software framework that protects computer servers from brute-force attacks and unauthorized access attempts.  When it detects such activity, it can take various actions, such as temporarily or permanently banning the offending IP addresses by updating firewall rules.​ We can install it using `sudo dnf install fail2ban`. Then, we will make some custom configurations in a new file we will create called `jail.local`, using `sudo nano /etc/fail2ban/jail.local`
+Custom configurations in the new file:  <br/>
+<img src="https://i.imgur.com/QdQF1q0.png" height="80%" width="80%">
+
+* `bantime` is the duration that an IP address will be banned after multiple failed logins. Default value is 10 minutes, we will increase this to 30 minutes.
+* `findtime` is the time window in which repeated failed login attempts will be counted. You can increase this number if you to want to be less sensitive to possible spikes in failed logins. A shorter time would trigge the ban sooner, blocking potential malicious attempts more speedily.
+* `maxretry` is the number of consecutive failed login attempts allowed before an IP address is banned.
 <br />
 <br />
-Wait for process to complete (may take some time):  <br/>
+We can start the service by running the command `sudo systemctl start fail2ban`. If you want to enable the service everytime you boot, you can run `sudo systemctl enable fail2ban`. We can test this out by trying to connect from a client using some random username.
+Repeatedly trying to log into the server using a random username:  <br/>
 <img src="https://i.imgur.com/JL945Ga.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
