@@ -61,6 +61,8 @@ Now you can start setting some firewall rules. Maybe you want to ensure no FTP c
 2. `ufw allow 80` (allowing HTTP traffic, since HTTP uses port 80)
 Firewall status after setting rules: <br/>
 <img src="https://i.imgur.com/5lX3RhU.png" height="80%" width="80%">
+
+The installation and usage of firewalld can be explored as an alternative firewall options as it is more robust. UFW is useful as an introduction to firewall installation. 
 <br />
 <br />
 Confirm your selection:  <br/>
