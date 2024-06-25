@@ -77,17 +77,11 @@ Custom configurations in the new file:  <br/>
 <br />
 <br />
 We can start the service by running the command `sudo systemctl start fail2ban`. If you want to enable the service everytime you boot, you can run `sudo systemctl enable fail2ban`. We can test this out by trying to connect from a client using some random username.
-Repeatedly trying to log into the server using a random username:  <br/>
-<img src="https://i.imgur.com/JL945Ga.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+Repeatedly trying to log into the server using a random username. We can see "connection refused", which is the ban action:  <br/>
+<img src="https://i.imgur.com/RyXNXa9.png" height="80%" width="80%">
 <br />
 <br />
-Sanitization complete:  <br/>
-<img src="https://i.imgur.com/K71yaM2.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Observe the wiped disk:  <br/>
-<img src="https://i.imgur.com/AeZkvFQ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
+
 
 <!--
  ```diff
