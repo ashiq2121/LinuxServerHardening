@@ -1,11 +1,12 @@
 # Linux Server Hardening
 
 <h2>Description</h2>
-Hi there! This is an exciting project, where I explore some of the ways to secure and harden a Linux server. The distribution chosen would be Rocky, as it is based on the Red Hat Enterprise Linux (RHEL) source code. RHEL is one of the most popular distributions in the enterprise world, and so working with Rocky would be a good alternative.
+Hi there! In this project, we will explore some of the ways to secure and harden a Linux server. The distribution chosen would be Rocky, as it is based on the Red Hat Enterprise Linux (RHEL) source code. RHEL is one of the most popular distributions in the enterprise world, and so working with Rocky would be a good alternative.
 <br />
 
 <h2>Hardening Measures Taken</h2>
 
+- <b>Adding a Standard User with sudo Access</b>
 - <b>SSH Keys for Authentication</b> 
 - <b>Firewall</b>
 - <b>Fail2Ban</b>
@@ -13,6 +14,14 @@ Hi there! This is an exciting project, where I explore some of the ways to secur
 <h2>Environments Used </h2>
 
 - <b>Rocky 9.2</b>
+
+<h2>Adding a Standard User with sudo Access</h2>
+
+In the first step of our hardening process, we will create a user and assign it sudo privileges. Why, you may ask. In most Linux servers, the root user is the default admin user. As part of good security practice, we try not log in as root to perform normal maintainence tasks or day-to-day administration. Hackers generally target the root user because it is generally the default admin user. Creating a new user with root permission will increase security. We do this by:
+
+1. Creating a new user: `adduser ShawnMichael`
+2. Set the users password: `passwd ShawnMichael`
+3. Add user to sudo wheel group: `usermod -aG wheel ShawnMichael`
 
 <h2>SSH Keys for Authentication</h2>
 
