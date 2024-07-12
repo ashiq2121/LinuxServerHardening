@@ -35,13 +35,11 @@ Here are the steps we take to harden the server with SSH authentication:
 <img src="https://i.imgur.com/GCrDZwa.png" height="80%" width="80%">
 3. To harden the server, we can remove password authentication to ensure that only users with the SSH certificate can access the server, essentially disabling password-based login to the server. We can also disable SSH login using the root username and change the default port number. To do this, we edit a particular file **on the server** to include some extra settings.<br/>
 - `cp /etc/ssh/sshd_config /etc/ssh/sshd_config_backup​` to backup the config file first.<br/>
-- `setenforce 0` and `nano /etc/selinux/config` to disable selinux, so that we can make changes to the config file without problem.<br/>
 - `systemctl stop sshd` to stop the SSH service before making any changes.<br/>
 - `nano /etc/ssh/sshd_config` to go into the config file and make our changes.<br/>
 -  Add the lines `Port 2222`, `PasswordAuthentication no` and `PermitRootLogin no`.<br/>
 
 <img src="https://i.imgur.com/ZvQQrwQ.png" height="80%" width="80%">
-<img src="https://i.imgur.com/5QvOcJB.png" height="80%" width="80%">
 <img src="https://i.imgur.com/oKSLgu1.png" height="80%" width="80%">
 
 Now if we try to connect from the client machine via the default port, or connect using the user password, or connect directly as a root user, we would be unable to.
